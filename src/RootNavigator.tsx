@@ -13,6 +13,7 @@ export type RootStackParamList = {
   DrawerDemo: undefined;
   PullToRefresh: undefined;
   TabScreen: undefined;
+  List:undefined;
 };
 
 const Stack=createStackNavigator<RootStackParamList>();
@@ -25,6 +26,7 @@ const RootNavigator:React.FC =()=>{
          <Stack.Screen name="DrawerDemo" component={DrawerNavigationDemo}/>
          <Stack.Screen name="PullToRefresh" component={PullToRefresh}/>
          <Stack.Screen name="TabScreen" component={ScreenRootNavigator}/>
+       
         </Stack.Navigator>
     )
 }

@@ -9,7 +9,6 @@ const Tab=createBottomTabNavigator();
 const ScreenRootNavigator:React.FC=()=>{
     return (
        <Tab.Navigator>
-           
            <Tab.Screen name="Project" component={Project}/>
            <Tab.Screen name="TaskList" component={TaskList}/>
        </Tab.Navigator>
