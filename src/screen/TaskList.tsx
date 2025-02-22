@@ -1,5 +1,6 @@
 import React from 'react';
 import {
+  Button,
   KeyboardAvoidingView,
   Modal,
   StyleSheet,
@@ -8,10 +9,23 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
+import { FlatList } from 'react-native-gesture-handler';
+
+interface InputProps{
+  
+}
 
 const TaskList: React.FC = () => {
   const [isModalVisible, setIsModalVisible] = React.useState(false);
   const [newTaskTitle, setNewTaskTitle] = React.useState('');
+  const handleAddTask=()=>{
+    return (
+      <View style={style.TaskList}>
+        {newTaskTitle}
+      </View>
+    )
+  }
+  console.log(newTaskTitle);
 
   return (
     <View style={style.container}>
@@ -38,10 +52,31 @@ const TaskList: React.FC = () => {
               }}  style={style.closeBtn}>
               <Text style={style.closeBtnText}>Close</Text>
             </TouchableOpacity>
-            <TextInput>
-                
+            
+            <View style={style.inputContainer}>
+
+            <TextInput style={style.input} onChange={(e)=>{setNewTaskTitle(e.nativeEvent.text)}} value={newTaskTitle} placeholder="Enter Task Title" >
+
             </TextInput>
+
+            <TouchableOpacity
+                style={style.inputAddBtn}
+                onPress={()=>{
+                }}>
+                 
+              <Text style={style.AddBtnText}>Add</Text>
+            </TouchableOpacity>
+            </View>
+
+            <FlatList data={newTaskTitle} renderItem={handleAddTask}>
+
+            </FlatList>
+
+
           </View>
+
+
+
        
         </KeyboardAvoidingView>
       </Modal>
@@ -102,8 +137,41 @@ const style = StyleSheet.create({
     color: '#ffffff',
     padding: 13,
     
-}
+},
+inputContainer:{
+   flexDirection:'row',
+   justifyContent:'space-between',
+   alignItems:'center',
+  
+},
+input:{
+   marginVertical:10,
+   marginHorizontal:12,
+   padding:21,
+   borderRadius:10,
+   borderWidth:1,
+   borderColor:'#6200ee',
+   width:'70%',
 
+},
+inputAddBtn:{
+  backgroundColor:'orange',
+  borderRadius:10,
+  marginLeft:12,
+  
+},
+AddBtnText:{
+ fontSize:10,
+ color:'#ffffff',
+ padding:13,
+ fontWeight:'bold',
+},
+TaskList:{
+  padding:10,
+  fontSize:20,
+  fontWeight:'bold',
+  color:'#6200ee',
+}
 });
 
 export default TaskList;
